@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "d75b84b8-9580-4a14-b461-fa5bffb21735",
+		"name": "Treasure Hunting!",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12614600"
+	},
+	"item": [
+		{
+			"name": "Find Treasure",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"latitude\": 14,\n    \"longitude\": 121,\n    \"distance\": 1,\n    \"prize_value\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/treasure",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"treasure"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[GOD MODE] Create Treasure",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 201,\n    \"latitude\": 15,\n    \"longitude\": 121,\n    \"name\": \"TT\",\n    \"prize_value\": [10, 10, 20, 30, 30]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/treasure",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"treasure"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
