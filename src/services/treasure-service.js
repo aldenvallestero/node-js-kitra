@@ -15,6 +15,7 @@ class TreasureService {
       const rawDistance = geolib.getDistance({ latitude, longitude }, { latitude: i.latitude, longitude: i.longitude });
       const kmDistance = geolib.convertDistance(rawDistance, 'km');
       if (kmDistance <= distance) {
+        logger.info(`${kmDistance} km detected!`);
         nearbyTreasures.push(i);
       }
     })
@@ -24,15 +25,12 @@ class TreasureService {
 
   async findTreasure({ latitude, longitude, distance, prize_value=undefined }) {
     logger.info(`TreasureService.findTreasure: X-${latitude} | Y-${longitude} | D-${distance}km`);
-
     const treasureList = await treasures.findAll({ raw: true });
-
     const nearbyTreasures = await this.#findTreasuresWithinDistance(latitude, longitude, distance, treasureList);
-
     const nearbyTreasureAmount = await this.monetaryService.extractTreasureValue(nearbyTreasures, prize_value);
 
     const message = nearbyTreasures.length > 0
-      ? `Treasures Found! You Got ${nearbyTreasureAmount}`
+      ? `Treasures Found! You Got $${nearbyTreasureAmount}`
       : 'No Luck Today!';
     
     const result = {

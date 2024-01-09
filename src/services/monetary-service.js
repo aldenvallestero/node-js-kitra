@@ -15,27 +15,26 @@ class MonetaryService {
         })
       })
 
+      logger.info(`You got $${Math.min(...moneyValues)}`);
+      return Math.min(...moneyValues);
+    } else {
+      await moneyValuesList.forEach(i => {
+        nearbyTreasures.forEach(j => {
+          if (i.treasure_id === j.id) {
+            moneyValues.push(i.amt);
+          }
+        })
+      })
+  
+      logger.info(`You got $${Math.min(...moneyValues)}`);
       return Math.min(...moneyValues);
     }
-
-    await moneyValuesList.forEach(i => {
-      nearbyTreasures.forEach(j => {
-        if (i.treasure_id === j.id) {
-          moneyValues.push(i.amt);
-        }
-      })
-    })
-
-    return Math.min(...moneyValues);
   }
 
   async extractTreasureValue(nearbyTreasures, prize_value) {
     logger.info(`MonetaryService.extractTreasureValue`);
-    
     const moneyValuesList = await money_values.findAll({ raw: true });
-
     let moneyValues = await this.#filterTreasureValuesById(moneyValuesList, nearbyTreasures, prize_value);
-
     return moneyValues;
   }
 }
