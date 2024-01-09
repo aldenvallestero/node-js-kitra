@@ -1,23 +1,18 @@
 const { treasures } = require('../../models/index');
 const geolib = require('geolib');
 const logger = require('../utils/logger-util');
-const LimitService = require('./limit-service');
 
 class TreasureService {
   async #findTreasuresWithinDistance(latitude, longitude, distance, treasureList) {
     logger.info(`TreasureService.#findTreasuresWithinDistance: X-${latitude} | Y-${longitude} | D-${distance}km`)
     const nearbyTreasures = [];
-
-    const limit = 5;
-
-    for (let i = 0; i < limit; i++) {
-      const rawDistance = geolib.getDistance({ latitude, longitude }, { latitude: treasureList[i].latitude, longitude: treasureList[i].longitude });
+    treasureList.map(i => {
+      const rawDistance = geolib.getDistance({ latitude, longitude }, { latitude: i.latitude, longitude: i.longitude });
       const kmDistance = geolib.convertDistance(rawDistance, 'km');
       if (kmDistance <= distance) {
-        console.log(kmDistance);
-        nearbyTreasures.push(treasureList[i]);
+        nearbyTreasures.push(i);
       }
-    }
+    })
 
     return nearbyTreasures;
   }
