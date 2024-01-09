@@ -27,20 +27,30 @@ class TreasureService {
     logger.info(`TreasureService.findTreasure: X-${latitude} | Y-${longitude} | D-${distance}km`);
     const treasureList = await treasures.findAll({ raw: true });
     const nearbyTreasures = await this.#findTreasuresWithinDistance(latitude, longitude, distance, treasureList);
-    const nearbyTreasureAmount = await this.monetaryService.extractTreasureValue(nearbyTreasures, prize_value);
 
-    const message = nearbyTreasures.length > 0
-      ? `Treasures Found! You Got $${nearbyTreasureAmount}`
-      : 'No Luck Today!';
+    if (nearbyTreasures.length > 0) {
+      const nearbyTreasureAmount = await this.monetaryService.extractTreasureValue(nearbyTreasures, prize_value);
+
+      const message = nearbyTreasures.length > 0
+        ? `Treasures Found! You Got $${nearbyTreasureAmount}`
+        : 'No Luck Today!';
+
+      return {
+        status: 200,
+        data: {
+          message,
+        }
+      };
+    } else {
+      return {
+        status: 200,
+        data: {
+          message: 'No Luck Today!',
+        }
+      };;
+    }
+
     
-    const result = {
-      status: 200,
-      data: {
-        message,
-      }
-    };
-
-    return result;
   }
 
   async createTreasure(treasure) {
