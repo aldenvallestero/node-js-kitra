@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -102,9 +102,9 @@ module.exports = {
     {
       treasure_id: 109,
       amt: 30
-    },
-  ], {})
-},
+    }
+    ], {})
+  },
 
   async down (queryInterface, Sequelize) {
     /**
@@ -114,4 +114,4 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
   }
-};
+}

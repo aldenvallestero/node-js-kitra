@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class money_values extends Model {
-    static associate(models) {}
+    static associate (models) {}
   }
   money_values.init({
     treasure_id: DataTypes.INTEGER,
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'money_values',
     createdAt: false,
-    updatedAt: false,
-  });
-  return money_values;
-};
+    updatedAt: false
+  })
+  return money_values
+}

@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class treasures extends Model {
-    static associate(models) {}
+    static associate (models) {}
   }
   treasures.init({
     latitude: DataTypes.INTEGER,
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'treasures',
     createdAt: false,
-    updatedAt: false,
-  });
-  return treasures;
-};
+    updatedAt: false
+  })
+  return treasures
+}

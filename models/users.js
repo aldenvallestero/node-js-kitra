@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class users extends Model {
-    static associate(models) {}
+    static associate (models) {}
   }
   users.init({
     name: DataTypes.STRING,
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'users',
     createdAt: false,
-    updatedAt: false,
-  });
-  return users;
-};
+    updatedAt: false
+  })
+  return users
+}

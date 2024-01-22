@@ -1,16 +1,16 @@
-const winston = require('winston');
+const winston = require('winston')
 
 const logger = winston.createLogger({
   level: 'debug',
   format: winston.format.combine(
     winston.format.colorize(),
-    winston.format.printf(({ level, message }) => `${level}: ${message}`),
+    winston.format.printf(({ level, message }) => `${level}: ${message}`)
   ),
   transports: [
     new winston.transports.Console({
-      stderrLevels: ['error'],
-    }),
-  ],
-});
+      stderrLevels: ['error']
+    })
+  ]
+})
 
-module.exports = logger;
+module.exports = logger
