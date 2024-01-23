@@ -8,16 +8,21 @@ class TreasureService {
     this.monetaryService = new MonetaryService()
   }
 
+  #isTreasureWithinDistance (treasureKmDistance, givenDistance, treasure, nearbyTreasures) {
+    logger.info('TreasureService.#isTreasureWithinDistance')
+    if (treasureKmDistance <= givenDistance) {
+      logger.info(`${treasureKmDistance.toFixed(2)} km detected!`)
+      nearbyTreasures.push(treasure)
+    }
+  }
+
   async #findTreasuresWithinDistance (latitude, longitude, distance, treasureList) {
     logger.info(`TreasureService.#findTreasuresWithinDistance: X-${latitude} | Y-${longitude} | D-${distance}km`)
     const nearbyTreasures = []
     treasureList.map(i => {
       const rawDistance = geolib.getDistance({ latitude, longitude }, { latitude: i.latitude, longitude: i.longitude })
       const kmDistance = geolib.convertDistance(rawDistance, 'km')
-      if (kmDistance <= distance) {
-        logger.info(`${kmDistance} km detected!`)
-        nearbyTreasures.push(i)
-      }
+      this.#isTreasureWithinDistance(kmDistance, distance, i, nearbyTreasures)
     })
 
     return nearbyTreasures
