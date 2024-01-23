@@ -9,7 +9,6 @@ class TreasureService {
   }
 
   #isTreasureWithinDistance (treasureKmDistance, givenDistance, treasure, nearbyTreasures) {
-    logger.info('TreasureService.#isTreasureWithinDistance')
     if (treasureKmDistance <= givenDistance) {
       logger.info(`${treasureKmDistance.toFixed(2)} km detected!`)
       nearbyTreasures.push(treasure)
