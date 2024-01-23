@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start:dev": "node src/index"
+    "start:dev": "nodemon src/index"
   },
   "author": "Alden Vallestero",
   "license": "ISC",
